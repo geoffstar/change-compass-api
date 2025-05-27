@@ -3,7 +3,7 @@ info:
   title: Change Translator Compare API
   version: 1.0.0
 servers:
-  - url: https://2c27-123-243-182-113.ngrok-free.app
+  - url: https://6065-123-243-182-113.ngrok-free.app
 paths:
   /translator-compare:
     post:
