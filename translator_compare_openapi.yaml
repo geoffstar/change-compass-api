@@ -2,6 +2,8 @@ openapi: 3.1.0
 info:
   title: Change Translator Compare API
   version: 1.0.0
+servers:
+  - url: https://2c27-123-243-182-113.ngrok-free.app
 paths:
   /translator-compare:
     post:
@@ -12,14 +14,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TranslatorCompareInput'
+              $ref: "#/components/schemas/TranslatorCompareInput"
       responses:
-        '200':
+        "200":
           description: Comparison response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TranslatorCompareOutput'
+                $ref: "#/components/schemas/TranslatorCompareOutput"
 components:
   schemas:
     TranslatorCompareInput:
@@ -27,7 +29,9 @@ components:
       properties:
         mode:
           type: string
-          enum: ["#compare", "#compare_md"]
+          enum:
+            - "#compare"
+            - "#compare_md"
         group_number:
           type: integer
           nullable: true
@@ -50,4 +54,48 @@ components:
                 type: string
     TranslatorCompareOutput:
       type: object
-      additionalProperties: true
+      properties:
+        group_section:
+          type: integer
+          nullable: true
+        field_insights:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              original:
+                type: string
+              updated:
+                type: array
+                items:
+                  type: string
+              source:
+                type: string
+        actions_menu:
+          type: string
+        insight_blocks:
+          type: array
+          items:
+            type: object
+            properties:
+              group:
+                type: integer
+              insight:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                    original:
+                      type: string
+                    updated:
+                      type: array
+                      items:
+                        type: string
+                    source:
+                      type: string
+              menu:
+                type: string
