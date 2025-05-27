@@ -1,0 +1,53 @@
+openapi: 3.1.0
+info:
+  title: Change Translator Compare API
+  version: 1.0.0
+paths:
+  /translator-compare:
+    post:
+      summary: Run Change Translator Compare
+      operationId: runTranslatorCompare
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TranslatorCompareInput'
+      responses:
+        '200':
+          description: Comparison response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranslatorCompareOutput'
+components:
+  schemas:
+    TranslatorCompareInput:
+      type: object
+      properties:
+        mode:
+          type: string
+          enum: ["#compare", "#compare_md"]
+        group_number:
+          type: integer
+          nullable: true
+        staged:
+          type: boolean
+        fields:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              original:
+                type: string
+              updated:
+                type: array
+                items:
+                  type: string
+              source:
+                type: string
+    TranslatorCompareOutput:
+      type: object
+      additionalProperties: true
